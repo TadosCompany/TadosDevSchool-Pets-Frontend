@@ -1,0 +1,9 @@
+<tr>
+    <td>{{ type }}</td>
+    <td>{{ food.name }}</td>
+    <td class="text-right">
+        <router-link v-bind:to="{ name: 'food', params: { id: food.id } }"
+            >{{ food.count }}</router-link
+        >
+    </td>
+</tr>

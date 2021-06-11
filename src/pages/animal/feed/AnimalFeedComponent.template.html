@@ -1,0 +1,43 @@
+<form v-on:submit.prevent="feed()" v-if="!!animal">
+    <h2>Покормить питомца</h2>
+
+    <div class="row mb-2">
+        <div class="form-group col-sm-3">
+            <label for="food">Корм</label>
+            <select class="form-select" v-model="food" id="food">
+                <option
+                    v-bind:value="null"
+                    disabled="disabled"
+                    selected="selected"
+                    >Не выбран</option
+                >
+                <option v-for="option of foods" v-bind:value="option"
+                    >{{ option.name }} ({{ option.count }})</option
+                >
+            </select>
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <div class="form-group col-sm-3">
+            <label for="count">Количество</label>
+            <input
+                id="count"
+                type="number"
+                class="form-control"
+                min="1"
+                v-bind:max="!!food ? food.count : undefined"
+                v-model="count"
+                autocomplete="off"
+            />
+        </div>
+    </div>
+
+    <button class="btn btn-primary" v-bind:disabled="!canFeed || working">
+        Покормить
+    </button>
+
+    <div class="alert alert-danger mt-2 col-sm-3" v-if="error">
+        Ой, что-то пошло не так
+    </div>
+</form>

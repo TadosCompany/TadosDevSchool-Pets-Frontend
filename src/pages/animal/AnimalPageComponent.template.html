@@ -1,0 +1,82 @@
+<div v-if="!!animal">
+    <h1>Кормления питомца &laquo;{{ name }}&raquo;</h1>
+
+    <router-link v-bind:to="{ name: 'animals' }">К списку питомцев</router-link>
+
+    <div class="row mb-2">
+        <div class="form-group col-sm-3">
+            <label for="name">Кличка</label>
+            <input
+                id="name"
+                type="text"
+                readonly
+                class="form-control-plaintext"
+                v-model="name"
+                autocomplete="off"
+            />
+        </div>
+    </div>
+    <div class="row mb-2">
+        <div class="form-group col-sm-3">
+            <label for="type">Тип питомца</label>
+            <input
+                id="type"
+                type="text"
+                readonly
+                class="form-control-plaintext"
+                v-model="type"
+                autocomplete="off"
+            />
+        </div>
+    </div>
+    <div class="row mb-2">
+        <div class="form-group col-sm-3">
+            <label for="breedName">Порода</label>
+            <input
+                id="breedName"
+                type="text"
+                readonly
+                class="form-control-plaintext"
+                v-model="breedName"
+                autocomplete="off"
+            />
+        </div>
+    </div>
+    <div class="row mb-2" v-if="weight">
+        <div class="form-group col-sm-3">
+            <label for="weight">Вес</label>
+            <input
+                id="weight"
+                type="text"
+                readonly
+                class="form-control-plaintext"
+                v-model="weight"
+                autocomplete="off"
+            />
+        </div>
+    </div>
+    <div class="row mb-2" v-if="tailLength">
+        <div class="form-group col-sm-3">
+            <label for="tailLength">Длина хвоста</label>
+            <input
+                id="tailLength"
+                type="text"
+                readonly
+                class="form-control-plaintext"
+                v-model="tailLength"
+                autocomplete="off"
+            />
+        </div>
+    </div>
+
+    <AnimalFeedComponent
+        v-bind:animal="animal"
+        v-on:fed="update()"
+    ></AnimalFeedComponent>
+
+    <h2>История кормлений</h2>
+
+    <AnimalFeedingsComponent
+        v-bind:feedings="animal.feedings"
+    ></AnimalFeedingsComponent>
+</div>

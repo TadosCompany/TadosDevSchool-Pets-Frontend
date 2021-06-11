@@ -1,0 +1,19 @@
+<div>
+    <table class="table table-bordered table-condensed" v-if="feedings.length">
+        <thead>
+            <tr>
+                <th>Когда</th>
+                <th>Корм</th>
+                <th>Количество</th>
+            </tr>
+        </thead>
+        <tbody>
+            <AnimalFeedingsEntryComponent
+                v-for="feeding of feedings"
+                v-bind:feeding="feeding"
+                v-bind:key="feeding.id"
+            ></AnimalFeedingsEntryComponent>
+        </tbody>
+    </table>
+    <div v-else class="alert alert-primary">Питомца ещё не кормили</div>
+</div>

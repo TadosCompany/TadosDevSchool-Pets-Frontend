@@ -1,0 +1,46 @@
+<div>
+    <h1>Корм</h1>
+
+    <FoodsAddComponent v-on:created="update()"></FoodsAddComponent>
+
+    <form v-on:submit.prevent="update()" class="mb-2">
+        <h3>Фильтр</h3>
+        <div class="row mb-2">
+            <div class="form-group col-sm-3">
+                <label for="searchAnimalType">Тип питомца</label>
+                <select
+                    class="form-select"
+                    v-model="animalType"
+                    id="searchAnimalType"
+                >
+                    <option
+                        v-for="option of animalTypes"
+                        v-bind:value="option.value"
+                        >{{ option.name }}</option
+                    >
+                </select>
+            </div>
+            <div class="form-group col-sm-3">
+                <label for="search">Поиск</label>
+                <input
+                    type="text"
+                    v-model="search"
+                    class="form-control"
+                    id="search"
+                    autocomplete="off"
+                />
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary" v-bind:disabled="loading">
+            Найти
+        </button>
+    </form>
+
+    <h2>Список кормов</h2>
+
+    <FoodsListComponent
+        v-if="!loading"
+        v-bind:foods="foods"
+    ></FoodsListComponent>
+</div>

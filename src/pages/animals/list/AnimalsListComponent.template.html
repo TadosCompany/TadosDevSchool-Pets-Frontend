@@ -1,0 +1,21 @@
+<div>
+    <table class="table table-bordered table-condensed" v-if="animals.length">
+        <thead>
+            <tr>
+                <th>Тип питомца</th>
+                <th>Порода</th>
+                <th>Кличка</th>
+            </tr>
+        </thead>
+        <tbody>
+            <AnimalsListEntryComponent
+                v-for="animal of animals"
+                v-bind:animal="animal"
+                v-bind:key="animal.id"
+            ></AnimalsListEntryComponent>
+        </tbody>
+    </table>
+    <div v-else class="alert alert-primary">
+        Питомцы не найдены
+    </div>
+</div>

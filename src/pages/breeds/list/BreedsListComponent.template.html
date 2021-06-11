@@ -1,0 +1,23 @@
+<div>
+    <table
+        class="table table-bordered table-condensed"
+        v-if="breeds.length"
+    >
+        <thead>
+            <tr>
+                <th>Тип питомца</th>
+                <th>Название породы</th>
+            </tr>
+        </thead>
+        <tbody>
+            <BreedsListEntryComponent
+                v-for="breed of breeds"
+                v-bind:breed="breed"
+                v-bind:key="breed.id"
+            ></BreedsListEntryComponent>
+        </tbody>
+    </table>
+    <div v-else class="alert alert-primary">
+        Породы не найдены
+    </div>
+</div>

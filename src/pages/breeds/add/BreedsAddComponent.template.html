@@ -1,0 +1,43 @@
+<form v-on:submit.prevent="create()">
+    <h2>Создание породы</h2>
+
+    <div class="row mb-2">
+        <div class="form-group col-sm-3">
+            <label for="animalType">Тип питомца</label>
+            <select class="form-select" v-model="animalType" id="animalType">
+                <option
+                    v-bind:value="null"
+                    disabled="disabled"
+                    selected="selected"
+                    >Не выбран</option
+                >
+                <option
+                    v-for="option of animalTypes"
+                    v-bind:value="option.value"
+                    >{{ option.name }}</option
+                >
+            </select>
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <div class="form-group col-sm-3">
+            <label for="name">Название породы</label>
+            <input
+                type="text"
+                v-model="name"
+                class="form-control"
+                id="name"
+                autocomplete="off"
+            />
+        </div>
+    </div>
+
+    <button class="btn btn-primary" v-bind:disabled="!canCreate || working">
+        Создать
+    </button>
+
+    <div class="alert alert-danger mt-2 col-sm-3" v-if="error">
+        Ой, что-то пошло не так
+    </div>
+</form>

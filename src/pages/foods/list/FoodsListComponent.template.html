@@ -1,0 +1,21 @@
+<div>
+    <table class="table table-bordered table-condensed" v-if="foods.length">
+        <thead>
+            <tr>
+                <th>Тип питомца</th>
+                <th>Название корма</th>
+                <th>Остаток</th>
+            </tr>
+        </thead>
+        <tbody>
+            <FoodsListEntryComponent
+                v-for="food of foods"
+                v-bind:food="food"
+                v-bind:key="food.id"
+            ></FoodsListEntryComponent>
+        </tbody>
+    </table>
+    <div v-else class="alert alert-primary">
+        Корма не найдены
+    </div>
+</div>

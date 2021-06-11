@@ -1,0 +1,65 @@
+<form v-if="!!food" v-on:submit.prevent="append()">
+    <h1>Управление запасами корма &laquo;{{ name }}&raquo;</h1>
+
+    <router-link to="/foods">К списку кормов</router-link>
+
+    <div class="row mb-2">
+        <div class="form-group col-sm-3">
+            <label for="name">Название</label>
+            <input
+                id="name"
+                type="text"
+                readonly
+                class="form-control-plaintext"
+                v-model="name"
+                autocomplete="off"
+            />
+        </div>
+    </div>
+    <div class="row mb-2">
+        <div class="form-group col-sm-3">
+            <label for="type">Тип питомца</label>
+            <input
+                id="type"
+                type="text"
+                readonly
+                class="form-control-plaintext"
+                v-model="type"
+                autocomplete="off"
+            />
+        </div>
+    </div>
+    <div class="row mb-2">
+        <div class="form-group col-sm-3">
+            <label for="count">Количество</label>
+            <input
+                id="count"
+                type="text"
+                readonly
+                class="form-control-plaintext"
+                v-model="count"
+                autocomplete="off"
+            />
+        </div>
+    </div>
+    <div class="row mb-2">
+        <div class="form-group col-sm-3">
+            <label for="appendCount">Количество для добавления</label>
+            <input
+                type="number"
+                class="form-control"
+                v-model="appendCount"
+                min="1"
+                autocomplete="off"
+            />
+        </div>
+    </div>
+
+    <button
+        type="submit"
+        class="btn btn-primary"
+        v-bind:disabled="!canAppend || working"
+    >
+        Добавить
+    </button>
+</form>
