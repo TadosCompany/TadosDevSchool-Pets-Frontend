@@ -1,4 +1,4 @@
-import { AnimalTypes, animalTypesDisplayName } from '@/models';
+import { Animals } from '@/models';
 import services from '@/services';
 import { Vue, Component } from 'vue-property-decorator';
 import WithRender from './FoodsAddComponent.template.html';
@@ -6,12 +6,14 @@ import WithRender from './FoodsAddComponent.template.html';
 @WithRender
 @Component({})
 export class FoodsAddComponent extends Vue {
-    public animalTypes = [AnimalTypes.Cat, AnimalTypes.Dog].map((type) => ({
-        name: animalTypesDisplayName(type),
-        value: type,
-    }));
+    public animalTypes = [Animals.AnimalTypes.Cat, Animals.AnimalTypes.Dog].map(
+        (type) => ({
+            name: Animals.animalTypesDisplayName(type),
+            value: type,
+        })
+    );
 
-    public animalType: AnimalTypes | null = null;
+    public animalType: Animals.AnimalTypes | null = null;
 
     public name: string = '';
 

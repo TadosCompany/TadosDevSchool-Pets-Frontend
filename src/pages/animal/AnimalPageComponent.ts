@@ -1,4 +1,4 @@
-import { Animal, AnimalTypes, animalTypesDisplayName } from '@/models';
+import { Animals } from '@/models';
 import services from '@/services';
 import { Vue, Component } from 'vue-property-decorator';
 import WithRender from './AnimalPageComponent.template.html';
@@ -13,7 +13,7 @@ import { AnimalFeedingsComponent } from './feedings/AnimalFeedingsComponent';
     },
 })
 export class AnimalPageComponent extends Vue {
-    public animal: Animal | null = null;
+    public animal: Animals.Animal | null = null;
 
     public working: boolean = false;
 
@@ -40,18 +40,18 @@ export class AnimalPageComponent extends Vue {
 
             if (!!this.animal) {
                 this.name = this.animal.name;
-                this.type = animalTypesDisplayName(this.animal.type);
-                this.breedName = this.animal.breed.name;
+                this.type = Animals.animalTypesDisplayName(this.animal.type);
+                this.breedName = this.animal.breedName;
 
                 this.tailLength = '';
                 this.weight = '';
 
                 switch (this.animal.type) {
-                    case AnimalTypes.Cat:
+                    case Animals.AnimalTypes.Cat:
                         this.weight = String(this.animal.weight);
                         break;
 
-                    case AnimalTypes.Dog:
+                    case Animals.AnimalTypes.Dog:
                         this.tailLength = String(this.animal.tailLength);
                         break;
                 }

@@ -1,4 +1,4 @@
-import { AnimalTypes } from './AnimalTypes';
+import { AnimalTypes } from '../animals/AnimalTypes';
 
 export interface IBreedData {
     readonly id: number;

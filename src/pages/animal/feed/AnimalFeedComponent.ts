@@ -1,4 +1,4 @@
-import { Animal, Food } from '@/models';
+import { Animals, Foods } from '@/models';
 import services from '@/services';
 import { Vue, Component, Prop, Watch } from 'vue-property-decorator';
 import WithRender from './AnimalFeedComponent.template.html';
@@ -7,15 +7,15 @@ import WithRender from './AnimalFeedComponent.template.html';
 @Component({})
 export class AnimalFeedComponent extends Vue {
     @Prop()
-    public animal!: Animal | null;
+    public animal!: Animals.Animal | null;
 
     public working: boolean = false;
 
     public error: boolean = false;
 
-    public foods: ReadonlyArray<Food> = [];
+    public foods: ReadonlyArray<Foods.Food> = [];
 
-    public food: Food | null = null;
+    public food: Foods.Food | null = null;
 
     public count: string = '1';
 

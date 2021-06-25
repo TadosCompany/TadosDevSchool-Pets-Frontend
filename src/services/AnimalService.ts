@@ -1,13 +1,13 @@
-import { AnimalTypes, Animal, animalFromObject, IAnimalData } from '@/models';
+import { Animals } from '@/models';
 import axios from 'axios';
 
 interface AnimalGetListRequest {
-    readonly animalType: AnimalTypes | null;
+    readonly animalType: Animals.AnimalTypes | null;
     readonly search: string | null;
 }
 
 interface AnimalGetListResponse {
-    readonly animals: ReadonlyArray<IAnimalData>;
+    readonly animals: ReadonlyArray<Animals.IAnimalListItemData>;
 }
 
 interface AnimalGetRequest {
@@ -15,11 +15,11 @@ interface AnimalGetRequest {
 }
 
 interface AnimalGetResponse {
-    readonly animal: IAnimalData | null;
+    readonly animal: Animals.IAnimalData | null;
 }
 
 interface AnimalAddRequest {
-    readonly type: AnimalTypes;
+    readonly type: Animals.AnimalTypes;
     readonly breedId: number;
     readonly name: string;
     readonly weight?: number;
@@ -42,9 +42,9 @@ export class AnimalService {
     public constructor() {}
 
     public async getList(
-        animalType: AnimalTypes | null,
+        animalType: Animals.AnimalTypes | null,
         search: string | null
-    ): Promise<ReadonlyArray<Animal>> {
+    ): Promise<ReadonlyArray<Animals.AnimalListItem>> {
         const request: AnimalGetListRequest = {
             search,
             animalType: animalType || null,
@@ -55,10 +55,12 @@ export class AnimalService {
             request
         );
 
-        return (response.data.animals || []).map((b) => animalFromObject(b));
+        return (response.data.animals || []).map((b) =>
+            Animals.animalListItemFromObject(b)
+        );
     }
 
-    public async get(id: number): Promise<Animal | null> {
+    public async get(id: number): Promise<Animals.Animal | null> {
         const request: AnimalGetRequest = {
             id,
         };
@@ -69,12 +71,12 @@ export class AnimalService {
         );
 
         return !!response?.data?.animal
-            ? animalFromObject(response.data.animal)
+            ? Animals.animalFromObject(response.data.animal)
             : null;
     }
 
     public async add(
-        type: AnimalTypes,
+        type: Animals.AnimalTypes,
         breedId: number,
         name: string,
         weight?: number,

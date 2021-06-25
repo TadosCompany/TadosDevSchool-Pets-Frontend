@@ -1,13 +1,13 @@
-import { AnimalTypes, Food, IFoodData } from '@/models';
+import { Animals, Foods } from '@/models';
 import axios from 'axios';
 
 interface FoodGetListRequest {
-    readonly animalType: AnimalTypes | null;
+    readonly animalType: Animals.AnimalTypes | null;
     readonly search: string | null;
 }
 
 interface FoodGetListResponse {
-    readonly foods: ReadonlyArray<IFoodData>;
+    readonly foods: ReadonlyArray<Foods.IFoodData>;
 }
 
 interface FoodGetRequest {
@@ -15,11 +15,11 @@ interface FoodGetRequest {
 }
 
 interface FoodGetResponse {
-    readonly food: IFoodData | null;
+    readonly food: Foods.IFoodData | null;
 }
 
 interface FoodAddRequest {
-    readonly animalType: AnimalTypes;
+    readonly animalType: Animals.AnimalTypes;
     readonly name: string;
 }
 
@@ -32,45 +32,56 @@ interface FoodAppendRequest {
     readonly count: number;
 }
 
-interface FoodAppendResponse {
-}
+interface FoodAppendResponse {}
 
 export class FoodService {
     public constructor() {}
 
     public async getList(
-        animalType: AnimalTypes | null,
+        animalType: Animals.AnimalTypes | null,
         search: string | null
-    ): Promise<ReadonlyArray<Food>> {
+    ): Promise<ReadonlyArray<Foods.Food>> {
         const request: FoodGetListRequest = {
             search,
             animalType: animalType ?? null,
         };
 
-        const response = await axios.post<FoodGetListResponse>('/api/food/getList', request);
+        const response = await axios.post<FoodGetListResponse>(
+            '/api/food/getList',
+            request
+        );
 
-        return (response.data.foods ?? []).map((b) => Food.fromObject(b));
+        return (response.data.foods ?? []).map((b) => Foods.Food.fromObject(b));
     }
 
-    public async get(id: number): Promise<Food | null> {
+    public async get(id: number): Promise<Foods.Food | null> {
         const request: FoodGetRequest = {
             id,
         };
 
-        const response = await axios.post<FoodGetResponse>('/api/food/get', request);
+        const response = await axios.post<FoodGetResponse>(
+            '/api/food/get',
+            request
+        );
 
         return !!response?.data?.food
-            ? Food.fromObject(response.data.food)
+            ? Foods.Food.fromObject(response.data.food)
             : null;
     }
 
-    public async add(animalType: AnimalTypes, name: string): Promise<number> {
+    public async add(
+        animalType: Animals.AnimalTypes,
+        name: string
+    ): Promise<number> {
         const request: FoodAddRequest = {
             animalType,
-            name
+            name,
         };
 
-        const response = await axios.post<FoodAddResponse>('/api/food/add', request);
+        const response = await axios.post<FoodAddResponse>(
+            '/api/food/add',
+            request
+        );
 
         return response.data.id;
     }

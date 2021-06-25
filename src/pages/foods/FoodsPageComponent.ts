@@ -1,8 +1,8 @@
-import { Vue, Component } from 'vue-property-decorator';
-import WithRender from './FoodsPageComponent.template.html';
+import { Animals, Foods } from '@/models';
 import services from '@/services';
-import { AnimalTypes, animalTypesDisplayName, Food } from '@/models';
+import { Component, Vue } from 'vue-property-decorator';
 import { FoodsAddComponent } from './add/FoodsAddComponent';
+import WithRender from './FoodsPageComponent.template.html';
 import { FoodsListComponent } from './list/FoodsListComponent';
 
 @WithRender
@@ -20,17 +20,17 @@ export class FoodsPageComponent extends Vue {
             name: 'Не выбран',
             value: null,
         },
-        ...[AnimalTypes.Cat, AnimalTypes.Dog].map((type) => ({
-            name: animalTypesDisplayName(type),
+        ...[Animals.AnimalTypes.Cat, Animals.AnimalTypes.Dog].map((type) => ({
+            name: Animals.animalTypesDisplayName(type),
             value: type,
         })),
     ];
 
     public search: string = '';
 
-    public animalType: AnimalTypes | null = null;
+    public animalType: Animals.AnimalTypes | null = null;
 
-    public foods: ReadonlyArray<Food> = [];
+    public foods: ReadonlyArray<Foods.Food> = [];
 
     public async mounted() {
         await this.update();

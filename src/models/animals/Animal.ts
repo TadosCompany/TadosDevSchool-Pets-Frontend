@@ -6,7 +6,7 @@ export type IAnimalData = ICatData | IDogData;
 
 export type Animal = Cat | Dog;
 
-export function animalFromObject(data: IAnimalData): Animal {
+export function fromObject(data: IAnimalData): Animal {
     switch (data.type) {
         case AnimalTypes.Cat:
             return Cat.fromObject(data);

@@ -1,4 +1,4 @@
-import { animalTypesDisplayName, Food } from '@/models';
+import { Animals, Foods } from '@/models';
 import services from '@/services';
 import { Vue, Component } from 'vue-property-decorator';
 import WithRender from './FoodPageComponent.template.html';
@@ -6,7 +6,7 @@ import WithRender from './FoodPageComponent.template.html';
 @WithRender
 @Component({})
 export class FoodPageComponent extends Vue {
-    public food: Food | null = null;
+    public food: Foods.Food | null = null;
 
     public appendCount: string = '1';
 
@@ -58,7 +58,9 @@ export class FoodPageComponent extends Vue {
 
             if (!!this.food) {
                 this.name = this.food.name;
-                this.type = animalTypesDisplayName(this.food.animalType);
+                this.type = Animals.animalTypesDisplayName(
+                    this.food.animalType
+                );
                 this.count = String(this.food.count);
             }
         } finally {

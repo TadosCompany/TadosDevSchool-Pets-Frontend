@@ -1,4 +1,4 @@
-import { AnimalTypes, animalTypesDisplayName, Breed } from '@/models';
+import { Animals, Breeds } from '@/models';
 import services from '@/services';
 import { Vue, Component, Watch } from 'vue-property-decorator';
 import WithRender from './AnimalsAddComponent.template.html';
@@ -6,18 +6,18 @@ import WithRender from './AnimalsAddComponent.template.html';
 @WithRender
 @Component({})
 export class AnimalsAddComponent extends Vue {
-    public animalTypes = [AnimalTypes.Cat, AnimalTypes.Dog].map((type) => ({
-        name: animalTypesDisplayName(type),
+    public animalTypes = [Animals.AnimalTypes.Cat, Animals.AnimalTypes.Dog].map((type) => ({
+        name: Animals.animalTypesDisplayName(type),
         value: type,
     }));
 
-    public AnimalTypes = AnimalTypes;
+    public AnimalTypes = Animals.AnimalTypes;
 
-    public animalType: AnimalTypes | null = null;
+    public animalType: Animals.AnimalTypes | null = null;
 
-    public breeds: ReadonlyArray<Breed> = [];
+    public breeds: ReadonlyArray<Breeds.Breed> = [];
 
-    public breed: Breed | null = null;
+    public breed: Breeds.Breed | null = null;
 
     public name: string = '';
 
@@ -34,8 +34,8 @@ export class AnimalsAddComponent extends Vue {
             !!this.name &&
             !!this.animalType &&
             !!this.breed &&
-            ((this.animalType === AnimalTypes.Cat && this.canCreateCat) ||
-                (this.animalType === AnimalTypes.Dog && this.canCreateDog))
+            ((this.animalType === Animals.AnimalTypes.Cat && this.canCreateCat) ||
+                (this.animalType === Animals.AnimalTypes.Dog && this.canCreateDog))
         );
     }
 
@@ -85,13 +85,13 @@ export class AnimalsAddComponent extends Vue {
             let tailLength: number | null = null;
 
             switch (this.animalType) {
-                case AnimalTypes.Cat:
+                case Animals.AnimalTypes.Cat:
                     weight = +this.weight;
 
                     if (isNaN(weight) || weight <= 0) return;
                     break;
 
-                case AnimalTypes.Dog:
+                case Animals.AnimalTypes.Dog:
                     tailLength = +this.tailLength;
 
                     if (isNaN(tailLength) || tailLength <= 0) return;

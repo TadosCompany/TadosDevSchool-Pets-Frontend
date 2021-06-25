@@ -1,4 +1,4 @@
-import { Animal, AnimalTypes, animalTypesDisplayName } from '@/models';
+import { Animals } from '@/models';
 import services from '@/services';
 import { Component, Vue } from 'vue-property-decorator';
 import { AnimalsAddComponent } from './add/AnimalsAddComponent';
@@ -20,17 +20,17 @@ export class AnimalsPageComponent extends Vue {
             name: 'Не выбран',
             value: null,
         },
-        ...[AnimalTypes.Cat, AnimalTypes.Dog].map((type) => ({
-            name: animalTypesDisplayName(type),
+        ...[Animals.AnimalTypes.Cat, Animals.AnimalTypes.Dog].map((type) => ({
+            name: Animals.animalTypesDisplayName(type),
             value: type,
         })),
     ];
 
     public search: string = '';
 
-    public animalType: AnimalTypes | null = null;
+    public animalType: Animals.AnimalTypes | null = null;
 
-    public animals: ReadonlyArray<Animal> = [];
+    public animals: ReadonlyArray<Animals.AnimalListItem> = [];
 
     public async mounted() {
         await this.update();

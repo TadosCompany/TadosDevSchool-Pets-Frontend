@@ -1,7 +1,7 @@
 import { Vue, Component } from 'vue-property-decorator';
 import WithRender from './BreedsPageComponent.template.html';
 import services from '@/services';
-import { AnimalTypes, animalTypesDisplayName, Breed } from '@/models';
+import { Animals, Breeds } from '@/models';
 import { BreedsAddComponent } from './add/BreedsAddComponent';
 import { BreedsListComponent } from './list/BreedsListComponent';
 
@@ -20,17 +20,17 @@ export class BreedsPageComponent extends Vue {
             name: 'Не выбран',
             value: null,
         },
-        ...[AnimalTypes.Cat, AnimalTypes.Dog].map((type) => ({
-            name: animalTypesDisplayName(type),
+        ...[Animals.AnimalTypes.Cat, Animals.AnimalTypes.Dog].map((type) => ({
+            name: Animals.animalTypesDisplayName(type),
             value: type,
         })),
     ];
 
     public search: string = '';
 
-    public animalType: AnimalTypes | null = null;
+    public animalType: Animals.AnimalTypes | null = null;
 
-    public breeds: ReadonlyArray<Breed> = [];
+    public breeds: ReadonlyArray<Breeds.Breed> = [];
 
     public async mounted() {
         await this.update();

@@ -1,4 +1,4 @@
-import { Feeding } from '@/models';
+import { Feedings } from '@/models';
 import { Vue, Component, Prop } from 'vue-property-decorator';
 import WithRender from './AnimalFeedingsComponent.template.html';
 import { AnimalFeedingsEntryComponent } from './entry/AnimalFeedingsEntryComponent';
@@ -11,5 +11,5 @@ import { AnimalFeedingsEntryComponent } from './entry/AnimalFeedingsEntryCompone
 })
 export class AnimalFeedingsComponent extends Vue {
     @Prop()
-    public feedings!: ReadonlyArray<Feeding>;
+    public feedings!: ReadonlyArray<Feedings.Feeding>;
 }

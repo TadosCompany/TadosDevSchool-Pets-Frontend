@@ -1,6 +1,6 @@
 <tr>
     <td>{{ type }}</td>
-    <td>{{ animal.breed.name }}</td>
+    <td>{{ animal.breedName }}</td>
     <td>
         <router-link v-bind:to="{ name: 'animal', params: { id: animal.id } }"
             >{{ animal.name }}</router-link

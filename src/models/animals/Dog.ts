@@ -1,7 +1,6 @@
+import { Feeding } from '../feedings';
 import { AnimalBase, IAnimalBaseData } from './AnimalBase';
 import { AnimalTypes } from './AnimalTypes';
-import { Breed } from './Breed';
-import { Feeding } from './Feeding';
 
 export interface IDogData extends IAnimalBaseData {
     readonly type: AnimalTypes.Dog;
@@ -12,11 +11,11 @@ export class Dog extends AnimalBase {
     public constructor(
         id: number,
         name: string,
-        breed: Breed,
+        breedName: string,
         feedings: ReadonlyArray<Feeding>,
         public readonly tailLength: number
     ) {
-        super(id, name, breed, feedings);
+        super(id, name, breedName, feedings);
     }
 
     public readonly type: AnimalTypes.Dog = AnimalTypes.Dog;
@@ -25,7 +24,7 @@ export class Dog extends AnimalBase {
         return new Dog(
             data.id,
             data.name,
-            data.breed,
+            data.breedName,
             data.feedings.map((f) => Feeding.fromObject(f)),
             data.tailLength
         );

@@ -1,4 +1,4 @@
-import { animalTypesDisplayName, Breed } from '@/models';
+import { Animals, Breeds } from '@/models';
 import { Vue, Component, Prop } from 'vue-property-decorator';
 import WithRender from './BreedsListEntryComponent.template.html';
 
@@ -6,9 +6,9 @@ import WithRender from './BreedsListEntryComponent.template.html';
 @Component({})
 export class BreedsListEntryComponent extends Vue {
     @Prop()
-    public breed!: Breed;
+    public breed!: Breeds.Breed;
 
     public get type(): string {
-        return animalTypesDisplayName(this.breed.animalType);
+        return Animals.animalTypesDisplayName(this.breed.animalType);
     }
 }

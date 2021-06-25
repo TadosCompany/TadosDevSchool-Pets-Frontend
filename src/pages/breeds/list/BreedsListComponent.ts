@@ -1,4 +1,4 @@
-import { Breed } from '@/models';
+import { Breeds } from '@/models';
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import WithRender from './BreedsListComponent.template.html';
 import { BreedsListEntryComponent } from './list-entry/BreedsListEntryComponent';
@@ -11,5 +11,5 @@ import { BreedsListEntryComponent } from './list-entry/BreedsListEntryComponent'
 })
 export class BreedsListComponent extends Vue {
     @Prop()
-    public breeds!: ReadonlyArray<Breed>;
+    public breeds!: ReadonlyArray<Breeds.Breed>;
 }
