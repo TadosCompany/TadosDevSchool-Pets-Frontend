@@ -27,6 +27,10 @@ export class AnimalPageComponent extends Vue {
 
     public weight: string = '';
 
+    public eyesColor: string = '';
+
+    public favoriteFoodName: string = '';
+
     public async mounted() {
         await this.update();
     }
@@ -45,6 +49,11 @@ export class AnimalPageComponent extends Vue {
 
                 this.tailLength = '';
                 this.weight = '';
+                this.eyesColor = '';
+
+                this.favoriteFoodName = !!this.animal.favoriteFood
+                    ? this.animal.favoriteFood.name
+                    : 'Не указана';
 
                 switch (this.animal.type) {
                     case Animals.AnimalTypes.Cat:
@@ -53,6 +62,10 @@ export class AnimalPageComponent extends Vue {
 
                     case Animals.AnimalTypes.Dog:
                         this.tailLength = String(this.animal.tailLength);
+                        break;
+
+                    case Animals.AnimalTypes.Hamster:
+                        this.eyesColor = this.animal.eyesColor;
                         break;
                 }
             }

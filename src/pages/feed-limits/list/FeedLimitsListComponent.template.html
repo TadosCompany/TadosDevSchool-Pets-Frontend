@@ -1,0 +1,22 @@
+<div>
+    <table class="table table-bordered table-condensed" v-if="feedLimits.length">
+        <thead>
+            <tr>
+                <th>Тип питомца</th>
+                <th>Порода</th>
+                <th>Максимум в день</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <FeedLimitsListEntryComponent
+                v-for="feedLimit of feedLimits"
+                v-bind:feedLimit="feedLimit"
+                v-bind:key="feedLimit.id"
+            ></FeedLimitsListEntryComponent>
+        </tbody>
+    </table>
+    <div v-else class="alert alert-primary">
+        Ограничения не найдены
+    </div>
+</div>

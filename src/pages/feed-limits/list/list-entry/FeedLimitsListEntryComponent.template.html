@@ -1,0 +1,11 @@
+<tr>
+    <td>{{ type }}</td>
+    <td>{{ feedLimit.breed.name }}</td>
+    <td>{{ feedLimit.maxPerDay }}</td>
+    <td>
+        <router-link
+            v-bind:to="{ name: 'feed-limit-edit', params: { id: feedLimit.id } }"
+            >Изменить</router-link
+        >
+    </td>
+</tr>

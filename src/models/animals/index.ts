@@ -4,7 +4,7 @@ export {
     fromObject as animalListItemFromObject,
     IAnimalListItemData,
 } from './AnimalListItem';
-export { AnimalTypes, animalTypesDisplayName } from './AnimalTypes';
+export { AnimalTypes, animalTypesDisplayName, ANIMAL_TYPES } from './AnimalTypes';
 export { Cat, ICatData } from './Cat';
 export { CatListItem, ICatListItemData } from './CatListItem';
 export { Dog, IDogData } from './Dog';

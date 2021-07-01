@@ -6,7 +6,7 @@ import WithRender from './BreedsAddComponent.template.html';
 @WithRender
 @Component({})
 export class BreedsAddComponent extends Vue {
-    public animalTypes = [Animals.AnimalTypes.Cat, Animals.AnimalTypes.Dog].map(
+    public animalTypes = Animals.ANIMAL_TYPES.map(
         (type) => ({
             name: Animals.animalTypesDisplayName(type),
             value: type,

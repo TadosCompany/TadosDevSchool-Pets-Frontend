@@ -39,6 +39,22 @@
 
     <div class="row mb-2">
         <div class="form-group col-sm-3">
+            <label for="food">Любимая еда</label>
+            <select class="form-select" v-model="food" id="food">
+                <option
+                    v-bind:value="null"
+                    selected="selected"
+                    >Не выбрана</option
+                >
+                <option v-for="option of foods" v-bind:value="option"
+                    >{{ option.name }}</option
+                >
+            </select>
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <div class="form-group col-sm-3">
             <label for="name">Кличка</label>
             <input
                 type="text"
@@ -71,6 +87,19 @@
                 v-model="tailLength"
                 class="form-control"
                 id="tailLength"
+                autocomplete="off"
+            />
+        </div>
+    </div>
+
+    <div class="row mb-2" v-if="animalType === AnimalTypes.Hamster">
+        <div class="form-group col-sm-3">
+            <label for="eyesColor">Цвет глаз</label>
+            <input
+                type="text"
+                v-model="eyesColor"
+                class="form-control"
+                id="eyesColor"
                 autocomplete="off"
             />
         </div>

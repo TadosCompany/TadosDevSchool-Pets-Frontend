@@ -1,18 +1,18 @@
-import { Animals, Foods } from '@/models';
+import { Animals, FeedLimits } from '@/models';
 import services from '@/services';
-import { Component, Vue } from 'vue-property-decorator';
-import { FoodsAddComponent } from './add/FoodsAddComponent';
-import WithRender from './FoodsPageComponent.template.html';
-import { FoodsListComponent } from './list/FoodsListComponent';
+import { Vue, Component } from 'vue-property-decorator';
+import { FeedLimitsAddComponent } from './add/FeedLimitsAddComponent';
+import WithRender from './FeedLimitsPageComponent.template.html';
+import { FeedLimitsListComponent } from './list/FeedLimitsListComponent';
 
 @WithRender
 @Component({
     components: {
-        FoodsAddComponent,
-        FoodsListComponent,
+        FeedLimitsAddComponent,
+        FeedLimitsListComponent,
     },
 })
-export class FoodsPageComponent extends Vue {
+export class FeedLimitsPageComponent extends Vue {
     public loading: boolean = false;
 
     public animalTypes = [
@@ -30,7 +30,7 @@ export class FoodsPageComponent extends Vue {
 
     public animalType: Animals.AnimalTypes | null = null;
 
-    public foods: ReadonlyArray<Foods.Food> = [];
+    public feedLimits: ReadonlyArray<FeedLimits.FeedLimit> = [];
 
     public async mounted() {
         await this.update();
@@ -40,12 +40,12 @@ export class FoodsPageComponent extends Vue {
         this.loading = true;
 
         try {
-            const foods = await services.food.getList(
+            const feedLimits = await services.feedLimit.getList(
                 this.animalType,
                 this.search
             );
 
-            this.foods = foods;
+            this.feedLimits = feedLimits;
         } finally {
             this.loading = false;
         }

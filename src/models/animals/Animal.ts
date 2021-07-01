@@ -1,10 +1,11 @@
 import { AnimalTypes } from './AnimalTypes';
 import { Cat, ICatData } from './Cat';
 import { Dog, IDogData } from './Dog';
+import { Hamster, IHamsterData } from './Hamster';
 
-export type IAnimalData = ICatData | IDogData;
+export type IAnimalData = ICatData | IDogData | IHamsterData;
 
-export type Animal = Cat | Dog;
+export type Animal = Cat | Dog | Hamster;
 
 export function fromObject(data: IAnimalData): Animal {
     switch (data.type) {
@@ -13,5 +14,8 @@ export function fromObject(data: IAnimalData): Animal {
 
         case AnimalTypes.Dog:
             return Dog.fromObject(data);
+
+        case AnimalTypes.Hamster:
+            return Hamster.fromObject(data);
     }
 }

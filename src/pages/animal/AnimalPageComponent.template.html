@@ -42,6 +42,19 @@
             />
         </div>
     </div>
+    <div class="row mb-2">
+        <div class="form-group col-sm-3">
+            <label for="favoriteFoodName">Любимая еда (<router-link v-bind:to="{ name: 'animal-edit', params: { id: animal.id } }">Изменить</router-link>)</label>
+            <input
+                id="favoriteFoodName"
+                type="text"
+                readonly
+                class="form-control-plaintext"
+                v-model="favoriteFoodName"
+                autocomplete="off"
+            />
+        </div>
+    </div>
     <div class="row mb-2" v-if="weight">
         <div class="form-group col-sm-3">
             <label for="weight">Вес</label>

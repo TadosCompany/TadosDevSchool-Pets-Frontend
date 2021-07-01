@@ -1,0 +1,28 @@
+<form v-on:submit.prevent="save()" v-if="!!feedLimit">
+    <h2>
+        Редактирование ограничений для животного вида &laquo;{{ animalType
+        }}&raquo; породы &laquo;{{ breedName }}&raquo;
+    </h2>
+
+    <div class="row mb-2">
+        <div class="form-group col-sm-3">
+            <label for="maxPerDay">Максимальное количество в день</label>
+            <input
+                id="maxPerDay"
+                type="number"
+                class="form-control"
+                min="1"
+                v-model="maxPerDay"
+                autocomplete="off"
+            />
+        </div>
+    </div>
+
+    <button class="btn btn-primary" v-bind:disabled="!canSave || working">
+        Сохранить
+    </button>
+
+    <div class="alert alert-danger mt-2 col-sm-3" v-if="error">
+        Ой, что-то пошло не так
+    </div>
+</form>

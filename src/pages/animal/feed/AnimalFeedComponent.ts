@@ -28,8 +28,6 @@ export class AnimalFeedComponent extends Vue {
     }
 
     public async mounted() {
-        console.log(this.animal);
-
         await this.animalWatcher();
     }
 

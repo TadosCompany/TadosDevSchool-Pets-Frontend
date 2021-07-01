@@ -20,7 +20,7 @@ export class AnimalsPageComponent extends Vue {
             name: 'Не выбран',
             value: null,
         },
-        ...[Animals.AnimalTypes.Cat, Animals.AnimalTypes.Dog].map((type) => ({
+        ...Animals.ANIMAL_TYPES.map((type) => ({
             name: Animals.animalTypesDisplayName(type),
             value: type,
         })),

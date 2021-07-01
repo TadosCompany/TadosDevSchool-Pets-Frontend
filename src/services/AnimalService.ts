@@ -22,8 +22,10 @@ interface AnimalAddRequest {
     readonly type: Animals.AnimalTypes;
     readonly breedId: number;
     readonly name: string;
+    readonly favoriteFoodId: number | null;
     readonly weight?: number;
     readonly tailLength?: number;
+    readonly eyesColor?: string;
 }
 
 interface AnimalAddResponse {
@@ -37,6 +39,13 @@ interface AnimalFeedRequest {
 }
 
 interface AnimalFeedResponse {}
+
+interface AnimalSetFavoriteFoodRequest {
+    readonly animalId: number;
+    readonly foodId: number | null;
+}
+
+interface AnimalSetFavoriteFoodResponse {}
 
 export class AnimalService {
     public constructor() {}
@@ -79,15 +88,19 @@ export class AnimalService {
         type: Animals.AnimalTypes,
         breedId: number,
         name: string,
+        favoriteFoodId: number | null,
         weight?: number,
-        tailLength?: number
+        tailLength?: number,
+        eyesColor?: string
     ): Promise<number> {
         const request: AnimalAddRequest = {
             type,
             breedId,
             name,
+            favoriteFoodId,
             weight,
             tailLength,
+            eyesColor,
         };
 
         const response = await axios.post<AnimalAddResponse>(
@@ -110,5 +123,17 @@ export class AnimalService {
         };
 
         await axios.post<AnimalFeedResponse>('/api/animal/feed', request);
+    }
+
+    public async setFavoriteFood(animalId: number, foodId: number | null) {
+        const request: AnimalSetFavoriteFoodRequest = {
+            animalId,
+            foodId,
+        };
+
+        await axios.post<AnimalSetFavoriteFoodResponse>(
+            '/api/animal/setFavoriteFood',
+            request
+        );
     }
 }

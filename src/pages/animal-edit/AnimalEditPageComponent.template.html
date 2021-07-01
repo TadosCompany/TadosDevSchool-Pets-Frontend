@@ -1,0 +1,27 @@
+<form v-if="!!animal" v-on:submit.prevent="save()">
+    <h2>Любимая еда питомца &laquo;{{ name }}&raquo;</h2>
+
+    <div class="row mb-2">
+        <div class="form-group col-sm-3">
+            <label for="food">Любимая еда</label>
+            <select class="form-select" v-model="food" id="food">
+                <option
+                    v-bind:value="null"
+                    selected="selected"
+                    >Не выбрана</option
+                >
+                <option v-for="option of foods" v-bind:value="option"
+                    >{{ option.name }}</option
+                >
+            </select>
+        </div>
+    </div>
+
+    <button class="btn btn-primary" v-bind:disabled="working">
+        Сохранить
+    </button>
+
+    <div class="alert alert-danger mt-2 col-sm-3" v-if="error">
+        Ой, что-то пошло не так
+    </div>
+</form>
